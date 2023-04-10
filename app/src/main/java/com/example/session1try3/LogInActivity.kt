@@ -14,6 +14,9 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.gotToCreateAccount.setOnClickListener {
+            startActivity(Intent(this@LogInActivity, SignUpActivity::class.java))
+        }
         binding.enter.setOnClickListener {
             val email = binding.mailInp.toString()
             val password = binding.passinp.toString()
@@ -33,6 +36,8 @@ class LogInActivity : AppCompatActivity() {
             }
             api.signIn(ModelAuth(email, password)).push(object: OnGetData<ModelIdentity>{
                 override fun onGet(data: ModelIdentity) {
+                    SharedPref.saveEmail(email, this@LogInActivity)
+                    SharedPref.setPassword(password, this@LogInActivity)
                     startActivity(Intent(this@LogInActivity, MainActivity::class.java))
                     finish()
                 }

@@ -13,6 +13,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
         if (SharedPref.checkNotFirstEnter(this@SplashActivity)) {
+            SharedPref.saveNotFirstEnter(this@SplashActivity)
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this@SplashActivity, OnBoardingActivity::class.java))
                 finish()
