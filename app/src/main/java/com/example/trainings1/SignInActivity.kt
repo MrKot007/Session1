@@ -17,7 +17,7 @@ class SignInActivity : AppCompatActivity() {
             startActivity(Intent(this@SignInActivity, SignUpActivity::class.java))
         }
         binding.enter.setOnClickListener {
-            val email = binding.pochta.text.toString()
+            val email = binding.nameInp.text.toString()
             val password = binding.parol.text.toString()
             if (password == "" || email == "") {
                 Toast.makeText(this@SignInActivity, "Заполнены не все поля!", Toast.LENGTH_LONG).show()
