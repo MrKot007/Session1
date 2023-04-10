@@ -107,9 +107,9 @@
             android:layout_height="match_parent"
             android:background="@null"
             android:ems="10"
+            android:hint="*******************"
             android:inputType="textPersonName"
-            android:padding="14dp"
-            android:text="*******************" />
+            android:padding="14dp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

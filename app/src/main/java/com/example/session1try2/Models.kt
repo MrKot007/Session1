@@ -26,3 +26,6 @@ data class ModelIdentity(
     val user: User,
     val token: String
 )
+data class ModelError(
+    val error: String
+)
