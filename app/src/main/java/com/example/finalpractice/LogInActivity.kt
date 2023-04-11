@@ -33,6 +33,8 @@ class LogInActivity : AppCompatActivity() {
             }
             api.signIn(ModelAuth(email, password)).push(object: OnGetData<ModelIdentity>{
                 override fun onGet(data: ModelIdentity) {
+                    SharedPref.saveEmail(email, this@LogInActivity)
+                    SharedPref.savePassword(password, this@LogInActivity)
                     startActivity(Intent(this@LogInActivity, MainActivity::class.java))
                     finish()
                 }
