@@ -14,6 +14,10 @@ class LogInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLogInBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.goToCreateAccount.setOnClickListener {
+            startActivity(Intent(this@LogInActivity, SignUpActivity::class.java))
+            finish()
+        }
         binding.enter.setOnClickListener {
             val email = binding.mail.text.toString()
             val password = binding.pass.text.toString()
@@ -22,14 +26,16 @@ class LogInActivity : AppCompatActivity() {
                     .setTitle("Почта введена некорректно!")
                     .setPositiveButton("Попробовать снова") {
                         dialog, id -> dialog.cancel()
-                    }.create()
+                    }.create().show()
+                return@setOnClickListener
             }
             if (email == "" || password == "") {
                 AlertDialog.Builder(this)
                     .setTitle("Заполните все поля!")
                     .setPositiveButton("Попробовать снова") {
                         dialog, id -> dialog.cancel()
-                    }.create()
+                    }.create().show()
+                return@setOnClickListener
             }
             api.signIn(ModelAuth(email, password)).push(object: OnGetData<ModelIdentity>{
                 override fun onGet(data: ModelIdentity) {
